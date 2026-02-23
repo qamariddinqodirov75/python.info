@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Meine Python-Bewerbung</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --bg-card: #111827;
+            --accent: #38bdf8;
+            --accent-soft: rgba(56, 189, 248, 0.15);
+            --text: #e5e7eb;
+            --muted: #9ca3af;
+            --radius: 18px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #1e293b 0, #020617 55%, #000 100%);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            padding: 24px;
+        }
+
+        .shell {
+            max-width: 960px;
+            width: 100%;
+            margin: auto;
+        }
+
+        .card {
+            background: linear-gradient(135deg, rgba(15,23,42,0.96), rgba(15,23,42,0.98));
+            border-radius: 28px;
+            border: 1px solid rgba(148,163,184,0.25);
+            box-shadow:
+                0 24px 80px rgba(15,23,42,0.9),
+                0 0 0 1px rgba(15,23,42,0.9);
+            padding: 28px 24px 26px;
+            backdrop-filter: blur(18px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: -40%;
+            background:
+                radial-gradient(circle at 0 0, rgba(56,189,248,0.18), transparent 55%),
+                radial-gradient(circle at 100% 0, rgba(129,140,248,0.16), transparent 55%);
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .card-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .title-block {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        h1 {
+            font-size: clamp(1.6rem, 3vw, 2rem);
+            letter-spacing: 0.03em;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pill {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--muted);
+        }
+
+        .badge {
+            font-size: 0.78rem;
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(56,189,248,0.5);
+            background: radial-gradient(circle at 0 0, rgba(56,189,248,0.18), transparent 60%);
+            color: var(--accent);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: var(--accent);
+            box-shadow: 0 0 12px rgba(56,189,248,0.9);
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: flex-end;
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        .meta span {
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(15,23,42,0.9);
+            border: 1px solid rgba(148,163,184,0.35);
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+            gap: 22px;
+        }
+
+        .content {
+            background: radial-gradient(circle at 0 0, rgba(15,23,42,0.9), rgba(15,23,42,0.96));
+            border-radius: var(--radius);
+            padding: 18px 18px 16px;
+            border: 1px solid rgba(148,163,184,0.35);
+        }
+
+        .content p {
+            line-height: 1.6;
+            font-size: 0.96rem;
+            color: #e5e7eb;
+            margin-bottom: 12px;
+        }
+
+        .content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .content strong {
+            font-weight: 600;
+        }
+
+        .list-block {
+            margin-top: 10px;
+        }
+
+        .list-block ol {
+            padding-left: 1.1rem;
+            display: grid;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .list-block li {
+            line-height: 1.55;
+        }
+
+        .list-block li span {
+            display: block;
+        }
+
+        .side {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .side-card {
+            background: radial-gradient(circle at 100% 0, rgba(15,23,42,0.9), rgba(15,23,42,0.96));
+            border-radius: var(--radius);
+            padding: 14px 16px 14px;
+            border: 1px solid rgba(148,163,184,0.35);
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .side-card h2 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        .side-card p {
+            line-height: 1.5;
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .chip {
+            font-size: 0.78rem;
+            padding: 4px 9px;
+            border-radius: 999px;
+            border: 1px solid rgba(148,163,184,0.4);
+            background: rgba(15,23,42,0.9);
+        }
+
+        .footer-note {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: var(--muted);
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 16px;
+            }
+
+            .card {
+                padding: 20px 16px 18px;
+                border-radius: 22px;
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .meta {
+                justify-content: flex-start;
+            }
+
+            main {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .content {
+                padding: 16px 14px 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="shell">
+    <div class="card">
+        <div class="card-inner">
+            <header>
+                <div class="title-block">
+                    <div class="pill">Persönliches Projekt</div>
+                    <h1>
+                        Meine Python‑Automatisierung
+                        <span class="badge">
+                            <span class="badge-dot"></span>
+                            Bewerbungen per Bot
+                        </span>
+                    </h1>
+                </div>
+              
+               
+            </header>
+
+            <main>
+                <section class="content">
+                    <p>
+                        Die Programmiersprache <strong>Python</strong> war für mich schon immer etwas Besonderes. Seit meiner
+                        Kindheit, schon in der Schule, habe ich diese Sprache wegen ihrer umfangreichen Bibliotheken und
+                        ihrer Vielseitigkeit genutzt. Mit 18 Jahren habe ich mein erstes komplexes Projekt für die nationale
+                        Olympiade „Ilm furugi Marifat“ entwickelt.
+                    </p>
+                    <p>
+                        Mein Projekt bestand darin, die Erstellung von Dokumenten zu automatisieren. Man konnte sein Anliegen
+                        und die Daten beschreiben, welche Art von Dokument man benötigt, und es konnte selbstständig ein
+                        Word‑Dokument erstellen und dieses dann in eine PDF‑Datei umwandeln.
+                    </p>
+                    <p>
+                        Und jetzt, nach einigen Anpassungen, sendet es Ihnen in meinem Namen eine Bewerbung.
+                    </p>
+
+                    <div class="list-block">
+                        <ol>
+                            <li>
+                                <span><strong>1. Wie funktioniert das?</strong> Wenn ich Ihre Daten an meinen Telegram‑Bot
+                                weitergebe, verarbeitet er sie zeilenweise in einem Excel‑Dokument. Diese Daten erhält dann
+                                meine Eigenentwicklung und sie erstellt (unter Verwendung von Vorlagen) eigenständig eine auf
+                                Ihre Daten zugeschnittene Bewerbung und sendet sie Ihnen zu.</span>
+                            </li>
+                            <li>
+                                <span><strong>2. Ist das legal?</strong> Ja, es ist absolut legal, weil ich meine eigenen
+                                Dokumente versende. Es erleichtert mir nur das Bewerben. Es handelt sich um meine private
+                                Entwicklung und Dritte haben keinen Zugriff; außerdem lösche ich alle Ihre Daten, sobald die
+                                Bewerbung abgeschickt wurde.</span>
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+
+                
+            </main>
+        </div>
+    </div>
+</div>
+</body>
+</html>
